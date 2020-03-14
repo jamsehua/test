@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		
+		<style type="text/css">
+			/* *{
+				margin: 0px,
+				padding: 0px;
+				list-style-type: none;
+      } */
+      *{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+			
+			.login_img {
+				margin: 50px auto;
+			}
+			
+			.login_img ul li {
+				position: absolute;
+			}
+			
+			.login_img .divImg {
+				background-position: 0px;
+				background-size: cover;
+				background-repeat: no-repeat;
+				width: 700px;
+				height: 400px;
+			}
+			
+			.img-enter-active, 
+			.img-leave-active {
+				transition: all 4s;
+			}
+			
+			.img-enter,
+			.img-leave-to {
+				opacity: 0;
+			}
+			
+			.img-enter-to,
+			.img-leave {
+				opacity: 1;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="root">
+			<div class="login_img">
+				<transition-group tag='ul' name='img'>
+				    <li v-for='(image,index) in imgs' :key='index' v-show='index===mark'>
+						<div class="divImg" :style="{backgroundImage: 'url('+image+')'}"></div>
+				    </li>
+				</transition-group>
+			</div>
+		</div>
+		<script src=""></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#root",
+				data: {
+					cur: 0,
+					mark: 0,
+					imgs: [
+                'https://aecpm.alicdn.com/simba/img/TB1XotJXQfb_uJkSnhJSuvdDVXa.jpg',
+                'https://aecpm.alicdn.com/simba/img/TB183NQapLM8KJjSZFBSutJHVXa.jpg',
+                'https://aecpm.alicdn.com/simba/img/TB1X6uHLVXXXXcCXVXXSutbFXXX.jpg',
+                '//img.alicdn.com/tfs/TB1kpdCx.T1gK0jSZFhXXaAtVXa-520-280.jpg_q90_.webp',
+                '//img.alicdn.com/tfs/TB10vWvxO_1gK0jSZFqXXcpaXXa-520-280.jpg_q90_.webp'],
+					loginImgStyle: {
+						backgroundPosition: '0px 0px',
+						backgroundSize: 'cover',
+						backgroundRepeat: 'no-repeat',
+						backgroundImage: 'url(img/1.jpg)',
+					}
+				},
+				created() {
+				  this.play()
+				},
+				mounted: function() {
+					
+				},
+				methods: {
+					autoPlay() {
+						if(this.mark<this.imgs.length-1){
+							this.mark++;
+						}else{
+							this.mark = 0;
+						}
+					},
+					play() {
+					    setInterval(this.autoPlay, 5000)
+					}
+				}
+			});
+		</script>
